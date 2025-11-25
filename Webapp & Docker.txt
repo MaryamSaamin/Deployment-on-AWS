@@ -1,0 +1,1 @@
+Webapp and Dockerization were explained in Description.docx and all the process in GitHub, and ReadMe is just the deployment on AWS.
