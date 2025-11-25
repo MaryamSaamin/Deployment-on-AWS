@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Math Calculator</title>
+</head>
+<body>
+    <h1>Complex Math Calculator</h1>
+    <input type="number" id="num1" placeholder="Enter number X">
+    <input type="number" id="num2" placeholder="Enter number Y">
+    <button onclick="sendNumbers()">Calculate</button>
+    <p>Result: <span id="result">-</span></p>
+
+    <script>
+        async function sendNumbers() {
+            const x = document.getElementById('num1').value;
+            const y = document.getElementById('num2').value;
+
+            try {
+                const response = await fetch('/calculate', {  // notice relative URL
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ x: x, y: y })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                document.getElementById('result').innerText = data.result;
+            } catch (err) {
+                document.getElementById('result').innerText = "Error: " + err;
+            }
+        }
+    </script>
+</body>
+</html>

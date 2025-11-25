@@ -1,0 +1,1 @@
+It is run on GitHub action to push docker image to AWS ECR. 
